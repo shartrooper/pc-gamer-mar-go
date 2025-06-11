@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="generator" content="Hugo 0.147.7">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC Gamer Margarita</title>
+  
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest"> 
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  
+  
+  <link rel="stylesheet" href="/scss/main.min.css">
+</head>
+<body>
+  
+  
+<header class="hero-header">
+  <div class="header-container">
+    <div class="header-content">
+      
+      
+      <div class="hero-logo-section">
+        <a href="/" class="logo-link">
+          <div class="logo-circle">
+            
+              <img src="/images/logos/pcgamer_logo.jpg" class="logo-img" alt="PC Gamer Margarita" />
+            
+          </div>
+        </a>
+      </div>
+
+      
+      <div class="site-title-section">
+        <a href="/" class="site-title-link">
+          PC Gamer Margarita
+        </a>
+      </div>
+
+      
+      <div class="header-utilities">
+        
+        <div class="utility-space">
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header> 
+  
+  <main>
+    
+    
+<section class="hero-carousel" id="heroCarousel" style="background-image: url('/images/banners/gaming-pcs.jpg');">
+  
+  
+  <div class="carousel-content-track" id="carouselTrack">
+    
+    
+    <div class="carousel-slide active">
+      <div class="slide-content">
+        <h2 class="slide-title">Gaming PCs de Alto Rendimiento</h2>
+        <p class="slide-description">Descubre nuestras computadoras gaming personalizadas para los jugadores más exigentes</p>
+        <a href="/gaming-pcs" class="slide-cta">Ver Catálogo</a>
+      </div>
+    </div>
+    
+    
+    <div class="carousel-slide">
+      <div class="slide-content">
+        <h2 class="slide-title">Componentes Premium</h2>
+        <p class="slide-description">Tarjetas gráficas, procesadores y memorias de las mejores marcas</p>
+        <a href="/components" class="slide-cta">Explorar Componentes</a>
+      </div>
+    </div>
+    
+    
+    <div class="carousel-slide">
+      <div class="slide-content">
+        <h2 class="slide-title">Periféricos Gaming</h2>
+        <p class="slide-description">Teclados mecánicos, ratones gaming y auriculares profesionales</p>
+        <a href="/peripherals" class="slide-cta">Ver Periféricos</a>
+      </div>
+    </div>
+    
+    
+    <div class="carousel-slide">
+      <div class="slide-content">
+        <h2 class="slide-title">Setup Completo</h2>
+        <p class="slide-description">Monitores gaming y accesorios para tu estación perfecta</p>
+        <a href="/accessories" class="slide-cta">Completar Setup</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <button class="carousel-nav prev" onclick="carouselPrev()" aria-label="Slide anterior">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+  <button class="carousel-nav next" onclick="carouselNext()" aria-label="Slide siguiente">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+  
+  
+  <div class="carousel-indicators">
+    <div class="indicator active" onclick="goToSlide(0)"></div>
+    <div class="indicator" onclick="goToSlide(1)"></div>
+    <div class="indicator" onclick="goToSlide(2)"></div>
+    <div class="indicator" onclick="goToSlide(3)"></div>
+  </div>
+  
+  
+  <button class="carousel-play-pause" onclick="toggleAutoplay()" aria-label="Pausar/reanudar carrusel">
+    <i class="fas fa-pause" id="playPauseIcon"></i>
+  </button>
+  
+</section>
+
+
+<script>
+class HeroCarousel {
+  constructor() {
+    this.currentSlide = 0;
+    this.totalSlides = 4;
+    this.isPlaying = true;
+    this.autoplayInterval = null;
+    this.track = document.getElementById('carouselTrack');
+    
+    
+    setTimeout(() => {
+      this.indicators = document.querySelectorAll('.indicator');
+      this.playPauseIcon = document.getElementById('playPauseIcon');
+      this.init();
+    }, 100);
+  }
+  
+  init() {
+    
+    this.updateCarousel();
+    this.startAutoplay();
+    this.addTouchSupport();
+  }
+  
+  goToSlide(index) {
+    this.currentSlide = index;
+    this.updateCarousel();
+  }
+  
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+    this.updateCarousel();
+  }
+  
+  prevSlide() {
+    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+    this.updateCarousel();
+  }
+  
+  updateCarousel() {
+    
+    const slides = document.querySelectorAll('.carousel-slide');
+    slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === this.currentSlide);
+    });
+    
+    
+    this.indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === this.currentSlide);
+    });
+  }
+  
+  startAutoplay() {
+    if (this.autoplayInterval) clearInterval(this.autoplayInterval);
+    
+    this.autoplayInterval = setInterval(() => {
+      if (this.isPlaying) {
+        this.nextSlide();
+      }
+    }, 5000); 
+  }
+  
+  toggleAutoplay() {
+    this.isPlaying = !this.isPlaying;
+    this.playPauseIcon.className = this.isPlaying ? 'fas fa-pause' : 'fas fa-play';
+    
+    if (this.isPlaying) {
+      this.startAutoplay();
+    }
+  }
+  
+  addTouchSupport() {
+    let startX = 0;
+    let threshold = 50;
+    
+    this.track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+    
+    this.track.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0) {
+          this.nextSlide();
+        } else {
+          this.prevSlide();
+        }
+      }
+    });
+  }
+}
+
+
+let carousel;
+
+function carouselNext() {
+  carousel.nextSlide();
+}
+
+function carouselPrev() {
+  carousel.prevSlide();
+}
+
+function goToSlide(index) {
+  carousel.goToSlide(index);
+}
+
+function toggleAutoplay() {
+  carousel.toggleAutoplay();
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  carousel = new HeroCarousel();
+});
+
+
+document.addEventListener('visibilitychange', function() {
+  if (carousel) {
+    if (document.hidden) {
+      carousel.isPlaying = false;
+    } else if (carousel.isPlaying) {
+      carousel.startAutoplay();
+    }
+  }
+});
+</script>
+
+<style>
+ 
+.slide-title, .slide-description {
+  font-display: swap;
+}
+
+ 
+.carousel-nav:focus,
+.indicator:focus,
+.carousel-play-pause:focus {
+  outline: 2px solid #00d9ff;
+  outline-offset: 2px;
+}
+
+ 
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track {
+    transition: none;
+  }
+  
+  .carousel-nav,
+  .indicator,
+  .slide-cta {
+    transition: none;
+  }
+}
+</style> 
+    
+    <section class="hero-section">
+      <h1>Bienvenido a PC Gamer Margarita</h1>
+      <p>Tu destino para componentes y periféricos gaming de última generación.</p>
+    </section>
+    
+    <section class="content-section">
+      <h2>Header & Footer Components</h2>
+      <ul>
+        <li><strong>Hero Header:</strong> Clean, modern header with logo space and responsive design</li>
+        <li><strong>Responsive Footer:</strong> Multi-section footer with contact info, links, and social media</li>
+        <li><strong>SASS Architecture:</strong> Organized, maintainable stylesheet structure</li>
+        <li><strong>Mobile-First:</strong> Optimized for all screen sizes and devices</li>
+        <li><strong>Customizable:</strong> Easy to modify colors, spacing, and content</li>
+      </ul>
+      
+      <h3>Usage</h3>
+      <p>Include the header: <code>{{ partials.Include &#34;hero-header.html&#34; . }}</code></p>
+      <p>Include the footer: <code>{{ partials.Include &#34;responsive-footer.html&#34; . }}</code></p>
+      
+      <h3>Customization</h3>
+      <p>Edit SASS variables in <code>assets/scss/components/</code> to customize the appearance.</p>
+      <p>Update <code>hugo.toml</code> to configure contact information, social links, and footer content.</p>
+    </section>
+  </main>
+  
+  
+<footer class="responsive-footer">
+  <div class="footer-container">
+    
+    
+    <div class="footer-main">
+      
+      
+      <div class="footer-section footer-about">
+        
+        <div class="footer-logo">
+          <div class="logo-circle">
+            
+              <img src="/images/logos/pcgamer_logo.jpg" class="logo-img" alt="PC Gamer Margarita" />
+            
+          </div>
+          <div class="site-name">PC Gamer Margarita</div>
+        </div>
+        
+        
+        <div class="footer-description">
+          
+            Todo en artículos de PC
+          
+        </div>
+        
+        
+        <div class="footer-contact">
+          
+          <div class="contact-item">
+            <i class="fas fa-envelope contact-icon"></i>
+            <span>contact@pcgamermargarita.com</span>
+          </div>
+          
+          
+          
+          <div class="contact-item">
+            <i class="fas fa-phone contact-icon"></i>
+            <span>&#43;58 424-8813008</span>
+          </div>
+          
+          
+          
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            
+            <a href="https://www.google.com/maps/place/El&#43;Mercado&#43;La&#43;Isla/@10.9702,-63.8525,17z/data=!4m6!3m5!1s0x8c318ebaf32663ab:0xcac94b7762480813!8m2!3d10.9701044!4d-63.8525263!16s%2Fg%2F11dxsrhhx1?hl=es&amp;entry=ttu&amp;g_ep=EgoyMDI1MDYwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="address-link">Av. Llano Adentro, C.C. El Mercado La Isla, local PB L25, Porlamar 6301, Nueva Esparta, Venezuela</a>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/contact">Contact</a></li>
+          
+        </ul>
+      </div>
+      
+      
+      <div class="footer-section">
+        <h3>Services</h3>
+        <ul>
+          
+            
+            <li><a href="/gaming-pcs">Gaming PCs</a></li>
+            
+            <li><a href="/components">Components</a></li>
+            
+            <li><a href="/accessories">Accessories</a></li>
+            
+            <li><a href="/support">Support</a></li>
+            
+          
+        </ul>
+      </div>
+      
+      
+      <div class="footer-section footer-social">
+        <h3>Síguenos</h3>
+        <p>Mantente conectado con nosotros en redes sociales.</p>
+        
+        
+        <div class="social-links">
+          
+            
+            
+            
+            
+            
+            
+            
+            <a href="https://instagram.com/pcgamer.mgta" class="social-link" target="_blank" rel="noopener" title="Instagram">
+              <i class="fab fa-instagram social-icon"></i>
+            </a>
+            
+            
+            
+            <a href="https://youtube.com/pcgamermargarita" class="social-link" target="_blank" rel="noopener" title="YouTube">
+              <i class="fab fa-youtube social-icon"></i>
+            </a>
+            
+            
+            
+          
+        </div>
+      </div>
+      
+    </div>
+    
+    
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        &copy; 2025 PC Gamer Margarita. Todos los derechos reservados.
+      </div>
+      
+      <div class="footer-links">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="/cookies">Cookie Policy</a>
+        <a href="/sitemap">Sitemap</a>
+      </div>
+    </div>
+    
+  </div>
+</footer> 
+  
+</body>
+</html> 
