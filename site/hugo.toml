@@ -2,7 +2,7 @@ baseURL = '/'
 languageCode = 'en-us'
 languageLang = "es"
 title = 'PC Gamer Margarita'
-theme = 'ananke'
+theme = 'kaldi'
 
 [params]
 # RSS, categories and tags disabled for an easy start
