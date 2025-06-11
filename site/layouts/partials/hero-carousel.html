@@ -1,0 +1,225 @@
+<!-- Hero Carousel Component -->
+<section class="hero-carousel" id="heroCarousel" style="background-image: url('/images/banners/gaming-pcs.jpg');">
+  
+  <!-- Carousel Content Track -->
+  <div class="carousel-content-track" id="carouselTrack">
+    
+    <!-- Slide 1: Gaming PCs -->
+    <div class="carousel-slide active">
+      <div class="slide-content">
+        <h2 class="slide-title">Gaming PCs de Alto Rendimiento</h2>
+        <p class="slide-description">Descubre nuestras computadoras gaming personalizadas para los jugadores más exigentes</p>
+        <a href="/gaming-pcs" class="slide-cta">Ver Catálogo</a>
+      </div>
+    </div>
+    
+    <!-- Slide 2: Components -->
+    <div class="carousel-slide">
+      <div class="slide-content">
+        <h2 class="slide-title">Componentes Premium</h2>
+        <p class="slide-description">Tarjetas gráficas, procesadores y memorias de las mejores marcas</p>
+        <a href="/components" class="slide-cta">Explorar Componentes</a>
+      </div>
+    </div>
+    
+    <!-- Slide 3: Peripherals -->
+    <div class="carousel-slide">
+      <div class="slide-content">
+        <h2 class="slide-title">Periféricos Gaming</h2>
+        <p class="slide-description">Teclados mecánicos, ratones gaming y auriculares profesionales</p>
+        <a href="/peripherals" class="slide-cta">Ver Periféricos</a>
+      </div>
+    </div>
+    
+    <!-- Slide 4: Accessories -->
+    <div class="carousel-slide">
+      <div class="slide-content">
+        <h2 class="slide-title">Setup Completo</h2>
+        <p class="slide-description">Monitores gaming y accesorios para tu estación perfecta</p>
+        <a href="/accessories" class="slide-cta">Completar Setup</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <!-- Navigation Arrows -->
+  <button class="carousel-nav prev" onclick="carouselPrev()" aria-label="Slide anterior">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+  <button class="carousel-nav next" onclick="carouselNext()" aria-label="Slide siguiente">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+  
+  <!-- Slide Indicators -->
+  <div class="carousel-indicators">
+    <div class="indicator active" onclick="goToSlide(0)"></div>
+    <div class="indicator" onclick="goToSlide(1)"></div>
+    <div class="indicator" onclick="goToSlide(2)"></div>
+    <div class="indicator" onclick="goToSlide(3)"></div>
+  </div>
+  
+  <!-- Play/Pause Button -->
+  <button class="carousel-play-pause" onclick="toggleAutoplay()" aria-label="Pausar/reanudar carrusel">
+    <i class="fas fa-pause" id="playPauseIcon"></i>
+  </button>
+  
+</section>
+
+<!-- Carousel JavaScript -->
+<script>
+class HeroCarousel {
+  constructor() {
+    this.currentSlide = 0;
+    this.totalSlides = 4;
+    this.isPlaying = true;
+    this.autoplayInterval = null;
+    this.track = document.getElementById('carouselTrack');
+    
+    // Wait for DOM to be fully ready
+    setTimeout(() => {
+      this.indicators = document.querySelectorAll('.indicator');
+      this.playPauseIcon = document.getElementById('playPauseIcon');
+      this.init();
+    }, 100);
+  }
+  
+  init() {
+    // Initialize first slide as active
+    this.updateCarousel();
+    this.startAutoplay();
+    this.addTouchSupport();
+  }
+  
+  goToSlide(index) {
+    this.currentSlide = index;
+    this.updateCarousel();
+  }
+  
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+    this.updateCarousel();
+  }
+  
+  prevSlide() {
+    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+    this.updateCarousel();
+  }
+  
+  updateCarousel() {
+    // Hide all slides
+    const slides = document.querySelectorAll('.carousel-slide');
+    slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === this.currentSlide);
+    });
+    
+    // Update indicators
+    this.indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === this.currentSlide);
+    });
+  }
+  
+  startAutoplay() {
+    if (this.autoplayInterval) clearInterval(this.autoplayInterval);
+    
+    this.autoplayInterval = setInterval(() => {
+      if (this.isPlaying) {
+        this.nextSlide();
+      }
+    }, 5000); // 5 seconds
+  }
+  
+  toggleAutoplay() {
+    this.isPlaying = !this.isPlaying;
+    this.playPauseIcon.className = this.isPlaying ? 'fas fa-pause' : 'fas fa-play';
+    
+    if (this.isPlaying) {
+      this.startAutoplay();
+    }
+  }
+  
+  addTouchSupport() {
+    let startX = 0;
+    let threshold = 50;
+    
+    this.track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+    
+    this.track.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0) {
+          this.nextSlide();
+        } else {
+          this.prevSlide();
+        }
+      }
+    });
+  }
+}
+
+// Global functions for onclick handlers
+let carousel;
+
+function carouselNext() {
+  carousel.nextSlide();
+}
+
+function carouselPrev() {
+  carousel.prevSlide();
+}
+
+function goToSlide(index) {
+  carousel.goToSlide(index);
+}
+
+function toggleAutoplay() {
+  carousel.toggleAutoplay();
+}
+
+// Initialize carousel when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  carousel = new HeroCarousel();
+});
+
+// Pause autoplay when window is not visible
+document.addEventListener('visibilitychange', function() {
+  if (carousel) {
+    if (document.hidden) {
+      carousel.isPlaying = false;
+    } else if (carousel.isPlaying) {
+      carousel.startAutoplay();
+    }
+  }
+});
+</script>
+
+<style>
+/* Ensure smooth font loading */
+.slide-title, .slide-description {
+  font-display: swap;
+}
+
+/* Accessibility improvements */
+.carousel-nav:focus,
+.indicator:focus,
+.carousel-play-pause:focus {
+  outline: 2px solid #00d9ff;
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track {
+    transition: none;
+  }
+  
+  .carousel-nav,
+  .indicator,
+  .slide-cta {
+    transition: none;
+  }
+}
+</style> 

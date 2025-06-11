@@ -1,13 +1,52 @@
-{{ define "main" }}
-
-{{ partial "jumbotron" (dict "imageUrl" .Params.image "title" .Title "subtitle" .Params.subtitle) }}
-
-{{ partial "short-text" .Params.blurb}}
-
-{{ partial "2-up" .Params }}
-
-{{ partial "text-and-image" (dict "heading" .Params.values.heading "text" .Params.values.text "buttonText" "Read more" "buttonLink" "/values") }}
-
-{{ partial "blog" . }}
-
-{{ end }}
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Site.Title }}</title>
+  {{ partials.Include "site-favicon.html" . }}
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Compile and include SCSS -->
+  {{ $style := resources.Get "scss/main.scss" | css.Sass | resources.Minify }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+</head>
+<body>
+  
+  {{ partials.Include "hero-header.html" . }}
+  
+  <main>
+    <!-- Hero Carousel -->
+    {{ partials.Include "hero-carousel.html" . }}
+    
+    <section class="hero-section">
+      <h1>Bienvenido a {{ .Site.Title }}</h1>
+      <p>Tu destino para componentes y periféricos gaming de última generación.</p>
+    </section>
+    
+    <section class="content-section">
+      <h2>Header & Footer Components</h2>
+      <ul>
+        <li><strong>Hero Header:</strong> Clean, modern header with logo space and responsive design</li>
+        <li><strong>Responsive Footer:</strong> Multi-section footer with contact info, links, and social media</li>
+        <li><strong>SASS Architecture:</strong> Organized, maintainable stylesheet structure</li>
+        <li><strong>Mobile-First:</strong> Optimized for all screen sizes and devices</li>
+        <li><strong>Customizable:</strong> Easy to modify colors, spacing, and content</li>
+      </ul>
+      
+      <h3>Usage</h3>
+      <p>Include the header: <code>{{ "{{ partials.Include \"hero-header.html\" . }}" }}</code></p>
+      <p>Include the footer: <code>{{ "{{ partials.Include \"responsive-footer.html\" . }}" }}</code></p>
+      
+      <h3>Customization</h3>
+      <p>Edit SASS variables in <code>assets/scss/components/</code> to customize the appearance.</p>
+      <p>Update <code>hugo.toml</code> to configure contact information, social links, and footer content.</p>
+    </section>
+  </main>
+  
+  {{ partials.Include "responsive-footer.html" . }}
+  
+</body>
+</html> 

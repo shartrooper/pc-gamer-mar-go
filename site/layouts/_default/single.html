@@ -1,6 +1,38 @@
-{{ define "main" }}
-
-{{ partial "jumbotron" (dict "imageUrl" "/img/7.jpg" "title" "This is where the heading goes" "subtitle" "This is where the subtitle goes") }}
-{{ .Content }}
-
-{{ end }}
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  {{ partials.Include "site-favicon.html" . }}
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Compile and include SCSS -->
+  {{ $style := resources.Get "scss/main.scss" | css.Sass | resources.Minify }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+</head>
+<body>
+  
+  {{ partials.Include "hero-header.html" . }}
+  
+  <main>
+    <article>
+      <header>
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.description }}
+          <p>{{ . }}</p>
+        {{ end }}
+      </header>
+      
+      <div class="content">
+        {{ .Content }}
+      </div>
+    </article>
+  </main>
+  
+  {{ partials.Include "responsive-footer.html" . }}
+  
+</body>
+</html> 

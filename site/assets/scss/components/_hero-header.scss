@@ -1,0 +1,133 @@
+// Import color variables
+@import '../variables/colors';
+
+// Variables for Hero Header
+$hero-logo-size: 64px;
+$hero-logo-size-mobile: 48px;
+$hero-logo-size-small: 48px;
+
+// Hero Header Styles
+.hero-header {
+  background: linear-gradient(135deg, $neutral-000 0%, $neutral-100 100%);
+  border-bottom: 1px solid $neutral-300;
+  padding: 1rem 0;
+  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.1);
+  
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .hero-logo-section {
+    flex: 0 0 auto;
+  }
+  
+  .logo-link {
+    text-decoration: none;
+    display: block;
+  }
+  
+  .logo-circle {
+    width: $hero-logo-size;
+    height: $hero-logo-size;
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+  
+  .logo-img {
+    width: $hero-logo-size - 16px;
+    height: $hero-logo-size - 16px;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+  
+  .logo-text {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.2;
+  }
+  
+  .site-title-section {
+    flex: 1;
+    text-align: center;
+    margin: 0 2rem;
+  }
+  
+  .site-title-link {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $brand-primary;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: $brand-secondary;
+    }
+  }
+  
+  .header-utilities {
+    flex: 0 0 auto;
+    min-width: $hero-logo-size;
+  }
+  
+  .utility-space {
+    height: $hero-logo-size;
+    // Reserved space for future header utilities
+  }
+  
+  // Responsive Design
+  @media (max-width: 768px) {
+    .logo-circle {
+      width: $hero-logo-size-mobile;
+      height: $hero-logo-size-mobile;
+    }
+    
+    .logo-img {
+      width: $hero-logo-size-mobile - 12px;
+      height: $hero-logo-size-mobile - 12px;
+    }
+    
+    .logo-text {
+      font-size: 12px;
+    }
+    
+    .site-title-section {
+      margin: 0 1rem;
+    }
+    
+    .site-title-link {
+      font-size: 1.25rem;
+    }
+    
+    .utility-space {
+      height: $hero-logo-size-mobile;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .site-title-section {
+      display: none;
+    }
+    
+    .header-content {
+      justify-content: space-between;
+    }
+  }
+} 

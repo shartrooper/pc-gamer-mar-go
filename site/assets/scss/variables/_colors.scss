@@ -1,0 +1,45 @@
+// PC Gamer Margarita Color Scheme
+// Gaming Elite Theme - Optimized for PC gaming hardware store
+
+// Primary Brand Colors
+$brand-primary: #1a365d;      // Deep tech blue - trust & professionalism  
+$brand-secondary: #553c9a;    // Gaming purple - premium accent
+$brand-accent: #00d9ff;       // Electric cyan - high-tech energy
+
+// Action & Interaction Colors
+$action-primary: #ff6b35;     // Gaming orange - excitement & CTAs
+$action-hover: #e55a2b;       // Darker orange for hover states
+$success: #38a169;            // Success green - purchase confidence
+$warning: #d69e2e;            // Warning amber
+$error: #e53e3e;              // Error red
+
+// Neutral Palette
+$neutral-900: #1a202c;        // Deep charcoal - dark backgrounds
+$neutral-800: #2d3748;        // Steel gray - secondary backgrounds  
+$neutral-700: #4a5568;        // Medium gray - secondary text
+$neutral-600: #718096;        // Light gray - muted text
+$neutral-500: #a0aec0;        // Border gray
+$neutral-400: #cbd5e0;        // Light borders
+$neutral-300: #e2e8f0;        // Very light borders
+$neutral-200: #edf2f7;        // Background tints
+$neutral-100: #f7fafc;        // Lightest backgrounds
+$neutral-000: #ffffff;        // Pure white
+
+// Gaming-Specific Colors
+$gaming-neon-green: #39ff14;  // Retro gaming green
+$gaming-neon-pink: #ff073a;   // Gaming RGB accent
+$gaming-gold: #ffd700;        // Premium/VIP gold
+
+// Semantic Colors for E-commerce
+$price-color: $action-primary;      // Orange for prices - attention grabbing
+$discount-color: $success;          // Green for discounts - positive
+$stock-available: $success;         // Green for in stock
+$stock-low: $warning;               // Amber for low stock  
+$stock-out: $error;                 // Red for out of stock
+$premium-badge: $gaming-gold;       // Gold for premium products
+
+// Social Media Brand Colors (for consistency)
+$instagram-color: #e4405f;
+$youtube-color: #ff0000;
+$facebook-color: #1877f2;
+$twitter-color: #1da1f2; 

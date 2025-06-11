@@ -1,0 +1,39 @@
+<!-- Hero Header Boilerplate -->
+<header class="hero-header">
+  <div class="header-container">
+    <div class="header-content">
+      
+      <!-- Hero Logo Section -->
+      <div class="hero-logo-section">
+        <a href="{{ .Site.Home.RelPermalink }}" class="logo-link">
+          <div class="logo-circle">
+            {{ with .Site.Params.site_logo }}
+              <img src="/images/logos/{{ . }}" class="logo-img" alt="{{ $.Site.Title }}" />
+            {{ else }}
+              <!-- Default Logo Placeholder -->
+              <div class="logo-text">
+                {{ substr .Site.Title 0 3 | upper }}
+              </div>
+            {{ end }}
+          </div>
+        </a>
+      </div>
+
+      <!-- Site Title Section -->
+      <div class="site-title-section">
+        <a href="{{ .Site.Home.RelPermalink }}" class="site-title-link">
+          {{ .Site.Title }}
+        </a>
+      </div>
+
+      <!-- Header Utilities Section -->
+      <div class="header-utilities">
+        <!-- Placeholder for additional header elements -->
+        <div class="utility-space">
+          <!-- Reserved space for search, user menu, etc. -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header> 

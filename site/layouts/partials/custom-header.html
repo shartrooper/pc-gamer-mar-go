@@ -1,0 +1,83 @@
+<!-- Custom Header Boilerplate -->
+<header class="site-header bg-white shadow-sm">
+  <div class="container mx-auto px-4 py-3">
+    <div class="flex items-center justify-between">
+      
+      <!-- Hero Logo Section -->
+      <div class="hero-logo-container">
+        <a href="{{ .Site.Home.RelPermalink }}" class="logo-link">
+          <!-- Logo Circle Container -->
+          <div class="logo-wrapper w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300">
+            {{ with .Site.Params.site_logo }}
+              <img src="{{ urls.RelURL . }}" class="w-12 h-12 object-contain" alt="{{ $.Site.Title }}" />
+            {{ else }}
+              <!-- Default Logo Placeholder -->
+              <div class="text-white font-bold text-sm text-center leading-tight">
+                {{ substr .Site.Title 0 3 | upper }}
+              </div>
+            {{ end }}
+          </div>
+        </a>
+      </div>
+
+      <!-- Site Title (Optional - can be hidden if logo is sufficient) -->
+      <div class="site-title-container hidden md:block">
+        <a href="{{ .Site.Home.RelPermalink }}" class="text-2xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-300 no-underline">
+          {{ .Site.Title }}
+        </a>
+      </div>
+
+      <!-- Right Side Utilities Placeholder -->
+      <div class="header-utilities flex items-center space-x-4">
+        <!-- Placeholder for search, login, cart, etc. -->
+        <div class="utility-placeholder">
+          <!-- Add search icon, user icon, etc. here -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- Custom CSS for Header -->
+<style>
+  .site-header {
+    border-bottom: 1px solid #e5e7eb;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  }
+  
+  .hero-logo-container {
+    position: relative;
+  }
+  
+  .logo-wrapper {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+  
+  .logo-wrapper:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+  }
+  
+  .logo-link {
+    text-decoration: none;
+  }
+  
+  .container {
+    max-width: 1200px;
+  }
+  
+  @media (max-width: 768px) {
+    .logo-wrapper {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    .logo-wrapper img {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+</style> 

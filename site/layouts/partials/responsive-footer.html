@@ -1,0 +1,168 @@
+<!-- Responsive Footer Boilerplate -->
+<footer class="responsive-footer">
+  <div class="footer-container">
+    
+    <!-- Main Footer Content -->
+    <div class="footer-main">
+      
+      <!-- About Section -->
+      <div class="footer-section footer-about">
+        <!-- Footer Logo -->
+        <div class="footer-logo">
+          <div class="logo-circle">
+            {{ with .Site.Params.site_logo }}
+              <img src="/images/logos/{{ . }}" class="logo-img" alt="{{ $.Site.Title }}" />
+            {{ else }}
+              <div class="logo-text">
+                {{ substr .Site.Title 0 3 | upper }}
+              </div>
+            {{ end }}
+          </div>
+          <div class="site-name">{{ .Site.Title }}</div>
+        </div>
+        
+        <!-- Description -->
+        <div class="footer-description">
+          {{ with .Site.Params.description }}
+            {{ . }}
+          {{ else }}
+            Build amazing experiences with our modern web solutions. Innovation meets reliability in every project we deliver.
+          {{ end }}
+        </div>
+        
+        <!-- Contact Information -->
+        <div class="footer-contact">
+          {{ with .Site.Params.email }}
+          <div class="contact-item">
+            <i class="fas fa-envelope contact-icon"></i>
+            <span>{{ . }}</span>
+          </div>
+          {{ end }}
+          
+          {{ with .Site.Params.phone }}
+          <div class="contact-item">
+            <i class="fas fa-phone contact-icon"></i>
+            <span>{{ . }}</span>
+          </div>
+          {{ end }}
+          
+          {{ with .Site.Params.address }}
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            {{ if $.Site.Params.maps_url }}
+            <a href="{{ $.Site.Params.maps_url }}" target="_blank" rel="noopener" class="address-link">{{ . }}</a>
+            {{ else }}
+            <span>{{ . }}</span>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          {{ if .Site.Menus.main }}
+            {{ range .Site.Menus.main }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+            {{ end }}
+          {{ else }}
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/contact">Contact</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      
+      <!-- Services/Categories -->
+      <div class="footer-section">
+        <h3>Services</h3>
+        <ul>
+          {{ with .Site.Params.footer_services }}
+            {{ range . }}
+            <li><a href="{{ .url }}">{{ .name }}</a></li>
+            {{ end }}
+          {{ else }}
+            <li><a href="/web-development">Web Development</a></li>
+            <li><a href="/design">UI/UX Design</a></li>
+            <li><a href="/consulting">Consulting</a></li>
+            <li><a href="/support">Support</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      
+      <!-- Social Media -->
+      <div class="footer-section footer-social">
+        <h3>Síguenos</h3>
+        <p>Mantente conectado con nosotros en redes sociales.</p>
+        
+        <!-- Social Links -->
+        <div class="social-links">
+          {{ with .Site.Params.social }}
+            {{ with .facebook }}
+            <a href="{{ . }}" class="social-link" target="_blank" rel="noopener" title="Facebook">
+              <i class="fab fa-facebook-f social-icon"></i>
+            </a>
+            {{ end }}
+            
+            {{ with .twitter }}
+            <a href="{{ . }}" class="social-link" target="_blank" rel="noopener" title="Twitter">
+              <i class="fab fa-twitter social-icon"></i>
+            </a>
+            {{ end }}
+            
+            {{ with .linkedin }}
+            <a href="{{ . }}" class="social-link" target="_blank" rel="noopener" title="LinkedIn">
+              <i class="fab fa-linkedin-in social-icon"></i>
+            </a>
+            {{ end }}
+            
+            {{ with .instagram }}
+            <a href="{{ . }}" class="social-link" target="_blank" rel="noopener" title="Instagram">
+              <i class="fab fa-instagram social-icon"></i>
+            </a>
+            {{ end }}
+            
+            {{ with .youtube }}
+            <a href="{{ . }}" class="social-link" target="_blank" rel="noopener" title="YouTube">
+              <i class="fab fa-youtube social-icon"></i>
+            </a>
+            {{ end }}
+            
+            {{ with .github }}
+            <a href="{{ . }}" class="social-link" target="_blank" rel="noopener" title="GitHub">
+              <i class="fab fa-github social-icon"></i>
+            </a>
+            {{ end }}
+          {{ else }}
+            <!-- Default social links placeholders -->
+            <a href="#" class="social-link" title="Instagram">
+              <i class="fab fa-instagram social-icon"></i>
+            </a>
+            <a href="#" class="social-link" title="YouTube">
+              <i class="fab fa-youtube social-icon"></i>
+            </a>
+          {{ end }}
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        &copy; {{ now.Format "2006" }} {{ .Site.Title }}. Todos los derechos reservados.
+      </div>
+      
+      <div class="footer-links">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="/cookies">Cookie Policy</a>
+        <a href="/sitemap">Sitemap</a>
+      </div>
+    </div>
+    
+  </div>
+</footer> 
